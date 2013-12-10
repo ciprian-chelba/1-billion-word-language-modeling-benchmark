@@ -1,0 +1,161 @@
+Copyright 2013 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--------------------------------------------------------------------------
+
+The project makes available a standard corpus of reasonable size (0.8 billion words) 
+to train and evaluate language models.
+
+A few sample results we obtained at Google on this data are detailed at:
+papers/naaclhlt2013.pdf
+
+Besides the scripts needed to rebuild the training/held-out data, it also makes 
+available log-probability values for each word in each of ten feld-out data sets, 
+for each of the following baseline models:
+. unpruned Katz (1.1B n-grams),
+. pruned Katz (~15M n-grams), 
+. unpruned Interpolated Kneser-Ney (1.1B n-grams), 
+. pruned Interpolated Kneser-Ney (~15M n-grams)
+
+The corpus is derived from the training-monolingual.tokenized/news.20??.en.shuffled.tokenized data distributed at http://statmt.org/wmt11/translation-task.html, Monolingual language model training data (Download it all in one file, 11 GB, at http://statmt.org/wmt11/training-monolingual.tgz). 
+
+Corpus preparation:
+====================
+. download the "Monolingual language model training data" (http://statmt.org/wmt11/training-monolingual.tgz, 11 GB). 
+$ tar --extract -v --file ../statmt.org/tar_archives/training-monolingual.tgz --wildcards training-monolingual/news.20??.en.shuffled
+followed by:
+$ ./scripts/get-data.sh
+
+For a more detailed description see README.corpus_generation.
+
+Baseline Language Models:
+==========================
+. trained and evaluated Katz and Interpolated Kneser-Ney language models.
+
+. the word-level probability assignment for each word in the first 10 shards of the test data
+(including the 00000 shard above for which we report LM performance) is available at:
+baseline-lms/log/output.tar (tar-ed gzip files; due to their relatively large size they
+are hosted on gDrive at https://drive.google.com/file/d/0B3u4EqGe3BUeMWhPS1hkdDZvTjA/edit?usp=sharing).
+
+The output is in the following format:
+...
+WORDS: <S> Hello , world ! </S>
+WORD IDS: 0 1044976486 1699010037 1539844246 217790329 1
+Hello   1044976486 -                           1.051147e+01 1.223186e+01 - COST=1.234405e+01
+,       1699010037 -              8.899814e-01 8.908027e-01 3.305907e+00 - COST=1.806272e+00
+world   1539844246 - 6.488597e+00 5.339889e+00 9.798830e+00 7.934176e+00 - COST=6.488597e+00
+!        217790329 - 1.622149e+00 6.229870e+00 6.770101e+00 8.099472e+00 - COST=1.622149e+00
+</S>             1 -   NOTFOUND   3.559926e-01 3.563211e-01 2.975316e+00 - COST=3.559926e-01
+- TOTAL ------------------------------------------------------------------ COST=2.261707e+01
+
+The output first repeats the input sentence (with <S> and </S> added). Then it shows the corresponding integer word ids. Subsequent lines list ProdLM entries obtained with ProdLMClient and the resulting smoothed cost calculated by ProdLMWrapper. For each word, it shows the entries for the unigram, bigram, trigram etc. ending in the word shown at the beginning of the line. The example above shows a fourgram model. Thus, the first column after the hyphen shows the fourgram entry, followed by the trigram, bigram and unigram entries 1.234405e+01.
+
+The first word of the sentence is "Hello". The implicit first token of the sentence is <S>, resulting in the bigram "<S>". There are no trigram and fourgram for the first word, so those columns are empty. The value stored for the bigram is 1.051147e+01, the value stored for the unigram is 1.223186e+01. ProdLMWrapper uses these to calculate a smoothed cost of .
+
+The line with the exclamation mark shows entries for n-grams ending in "!": the fourgram "Hello , world !" has a value of 1.622149e+00, the trigram ", world !" has a value of 6.229870e+00, etc. NOTFOUND (which is shown as the value for the fourgram ", world ! <S>") indicates that the particular n-gram is not stored in the model.
+
+Baseline LM Results Summary:
+=============================
+
+Here are the out-of-vocabulary (OoV) rates and perplexity (PPL)/n-gram hit ratios on the first 10 shards of the held out data (heldout-monolingual.tokenized.shuffled/news.en.heldout-0000?-of-00050)
+
+See README.perplexity_and_such for a description on how we compute perplexity, out-of-vocabulary rate,
+and back-off hit ratios.
+
+oov rate:      480 /  158539 ( 0.30%)
+oov rate:      756 /  159787 ( 0.47%)
+oov rate:      448 /  159753 ( 0.28%)
+oov rate:      641 /  165553 ( 0.39%)
+oov rate:      516 /  158017 ( 0.33%)
+oov rate:      498 /  165514 ( 0.30%)
+oov rate:      431 /  161884 ( 0.27%)
+oov rate:      517 /  159189 ( 0.32%)
+oov rate:      495 /  160108 ( 0.31%)
+oov rate:      480 /  161084 ( 0.30%)
+
+Katz, unpruned, n=5, 1.1B n-grams:
+totalcount = 825422561
+num_ngrams = 791886 39341695 188830352 384501043 513864433 (total: 1127329409)
+Perplexity for 158539 n-grams: 87.9538 (1...5-gram hit ratios = 100.00%, 97.18%, 82.15%, 56.94%, 35.71%)
+Perplexity for 159787 n-grams: 85.6429
+Perplexity for 159753 n-grams: 85.2686
+Perplexity for 165553 n-grams: 86.3777
+Perplexity for 158017 n-grams: 88.4041
+Perplexity for 165514 n-grams: 84.2656
+Perplexity for 161884 n-grams: 86.1193
+Perplexity for 159189 n-grams: 85.5989
+Perplexity for 160108 n-grams: 82.1627
+Perplexity for 161084 n-grams: 87.2661
+
+Katz, pruned, n=5, 15M n-grams:
+totalcount = 825422561
+num_ngrams = 791886 6038040 6018996 1814253 178285 (total: 14841460)
+Perplexity for 158539 n-grams: 135.7564 (1...5-gram hit ratios = 100.00%, 91.98%, 49.86%, 11.40%, 1.09%)
+Perplexity for 159787 n-grams: 131.8280
+Perplexity for 159753 n-grams: 130.9167
+Perplexity for 165553 n-grams: 132.7336
+Perplexity for 158017 n-grams: 135.4353
+Perplexity for 165514 n-grams: 129.8195
+Perplexity for 161884 n-grams: 131.4653
+Perplexity for 159189 n-grams: 132.3367
+Perplexity for 160108 n-grams: 129.9689
+Perplexity for 161084 n-grams: 135.6411
+
+Interpolated Kneser-Ney, unpruned, n=5, 1.1B n-grams:
+totalcount = 825422561
+num_ngrams = 791886 39341697 189072431 388021547 527528817 (total: 1144756378)
+Perplexity for 158539 n-grams: 74.3795 (1...5-gram hit ratios = 100.00%, 97.18%, 82.82%, 59.92%, 41.72%)
+Perplexity for 159787 n-grams: 72.5581
+Perplexity for 159753 n-grams: 72.6330
+Perplexity for 165553 n-grams: 73.2244
+Perplexity for 158017 n-grams: 74.9420
+Perplexity for 165514 n-grams: 71.2567
+Perplexity for 161884 n-grams: 73.1254
+Perplexity for 159189 n-grams: 72.5676
+Perplexity for 160108 n-grams: 69.5561
+Perplexity for 161084 n-grams: 73.8883
+
+Interpolated Kneser-Ney, pruned, n=5, 14M n-grams:
+totalcount = 825422561
+num_ngrams = 791886 8703936 4216100 460889 16743 (total: 14189554)
+Perplexity for 158539 n-grams: 246.3167 (1...5-gram hit ratios = 100.00%, 86.52%, 35.84%, 3.97%, 0.17%)
+Perplexity for 159787 n-grams: 242.1531
+Perplexity for 159753 n-grams: 241.9882
+Perplexity for 165553 n-grams: 243.6675
+Perplexity for 158017 n-grams: 248.4639
+Perplexity for 165514 n-grams: 241.8187
+Perplexity for 161884 n-grams: 244.9498
+Perplexity for 159189 n-grams: 244.3134
+Perplexity for 160108 n-grams: 241.1720
+Perplexity for 161084 n-grams: 247.4707
+
+
+Table summarizing the results, including the mean/standard deviation of PPL across 
+each of the heldout sets:
+
+# n-grams       Perplexity
+                -------------------------------------------------------------------
+                Kneser-Ney      Katz            pruned Kneser-Ney       pruned Katz
+-----------------------------------------------------------------------------------
+158539		74.3795		87.9538		246.3167		135.7564
+159787		72.5581		85.6429		242.1531		131.8280
+159753		72.6330		85.2686		241.9882		130.9167
+165553		73.2244		86.3777		243.6675		132.7336
+158017		74.9420		88.4041		248.4639		135.4353
+165514		71.2567		84.2656		241.8187		129.8195
+161884		73.1254		86.1193		244.9498		131.4653
+159189		72.5676		85.5989		244.3134		132.3367
+160108		69.5561		82.1627		241.1720		129.9689
+161084		73.8883		87.2661		247.4707		135.6411
+-----------------------------------------------------------------------------------
+mean/sd         72.81/1.47      85.91/1.73      244.23/2.41             132.59/2.16
