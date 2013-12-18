@@ -33,6 +33,10 @@ if ($HELP) {
 if (!$QUIET) {
   print STDERR "Tokenizer v3\n";
   print STDERR "Language: $language\n";
+  print STDERR "Environment:\n";
+  foreach my $key (keys(%ENV)) {
+      print STDERR "\t$key=$ENV{$key}\n";
+  }
 }
 
 load_prefixes($language,\%NONBREAKING_PREFIX);

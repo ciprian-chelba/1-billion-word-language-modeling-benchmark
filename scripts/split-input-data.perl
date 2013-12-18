@@ -33,6 +33,28 @@ use Symbol;
 use warnings;
 use Getopt::Long;
 
+# A portable random number generator (http://en.wikipedia.org/wiki/Xorshift). 
+{
+    use integer; #use integer math
+    my $x = 123456789;
+    my $y = 362436069;
+    my $w = 88675123; 
+    my $z = 521288629;
+
+    sub set_random_seed {
+    	$w = shift;
+    }
+
+    sub random { 
+    	my $t = $x ^ ($x << 11);
+    	$x = $y;
+    	$y = $z;
+    	$z = $w;
+    	my $rand = $w = ($w ^ ($w >> 19)) ^ ($t ^ ($t >> 8)); 
+    	return $rand;
+    }
+}
+
 my $input_file = "";
 my $num_shards = 100;
 my $output_file_base = "";
@@ -66,10 +88,11 @@ for (my $shard = 0; $shard < $num_shards; ++$shard) {
 # Open input file, traverse one line at a time, and output <K, V> pairs where
 # K=random number, and V = sentence. 
 # Each <K, V> pair is output to shard (K modulo $num_shards).
+set_random_seed(0);
 open(INPUT, $input_file) or die "Cannot open $input_file.";
 while ($_=<INPUT>) {
   chomp;
-  my $key = int(rand($num_shards * 1000));
+  my $key = random($num_shards * 1000);
   my $shard = $key % $num_shards;
   if ($debug) {
     print STDERR "$file_names[$shard] gets $key $_\n";
