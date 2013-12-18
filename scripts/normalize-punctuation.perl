@@ -40,7 +40,8 @@ while(<STDIN>) {
   s/ :/:/g;
   s/ ;/;/g;
   # normalize unicode punctuation
-  s/’/'/g;  # Added by ciprianchelba@google.com
+  # Added by ciprianchelba@google.com
+  s/’/'/g;  
   s/‘/'/g;
   s/'/'/g;
   s/—/--/g;
@@ -50,7 +51,22 @@ while(<STDIN>) {
   s/„/"/g;
   s/″/"/g;
   s/“/"/g;
-  s/”/"/g;  # /Added by ciprianchelba@google.com
+  s/”/"/g;
+  # /Added by ciprianchelba@google.com
+
+  # Added by ciprianchelba@google.com at drtonyrobinson@gmail.com's suggestion.
+  # use Unicode (http://en.wikipedia.org/wiki/List_of_Unicode_characters) 
+  # instead of strange renditions; the two are different if you have good eyesight, 
+  # or use "od -t x1" to inspect them.
+  s/á/á/g;
+  s/ë/ë/g;
+  s/é/é/g;  
+  s/ê/ê/g;
+  s/ñ/ñ/g;
+  s/ö/ö/g;
+  s/ú/ú/g;
+  # /Added by ciprianchelba@google.com at drtonyrobinson@gmail.com's suggestion.
+
   s/â€ž/\"/g;
   s/â€œ/\"/g;
   s/â€/\"/g;

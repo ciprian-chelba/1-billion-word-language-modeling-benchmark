@@ -30,6 +30,11 @@
 # splits the data in 100 shards, randomly shuffled, sets aside held-out data, and 
 # splits it into 50 test partitions.
 
+# Set environemnt vars LANG and LANGUAGE to make sure all users have the same 
+# locale settings.
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:
+
 # Punctuation normalization and tokenization.
 if [ -d training-monolingual.tokenized ]
 then
