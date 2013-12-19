@@ -1,0 +1,319 @@
+Copyright 2013 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--------------------------------------------------------------------------
+
+CHECKPOINT 1: The download from statmt.org has the following size/md5 checksum:
+$ md5sum tar_archives/training-monolingual.tgz 
+cad1cb504001e7bab87d39f3cddaab43  tar_archives/training-monolingual.tgz
+
+CHECKPOINT 2: After extracting the desired files from the tar archive:
+$ md5sum training-monolingual/*
+b7d3968e247b46381c6769dec720390e  training-monolingual/news.2007.en.shuffled
+1a830e457622c9289764573a6a358407  training-monolingual/news.2008.en.shuffled
+3e6ccfca472e76372ac797fddb37081e  training-monolingual/news.2009.en.shuffled
+234a50914d87158754815a0bd86d7b9d  training-monolingual/news.2010.en.shuffled
+f71c2d7b5b4339571e1db44648f877b6  training-monolingual/news.2011.en.shuffled
+
+CHECKPOINT 3: Tokenized data
+$ md5sum training-monolingual.tokenized/*
+245c78080cb860c1487d51d171d53b77  training-monolingual.tokenized/news.2007.en.shuffled.tokenized
+b5ec2cdc901818ae40850b844e2836d6  training-monolingual.tokenized/news.2008.en.shuffled.tokenized
+e8c3ab34e0695aa8abbd6a33aa1cfa1e  training-monolingual.tokenized/news.2009.en.shuffled.tokenized
+457e5bec1e845986f5b1c3e3ebccd399  training-monolingual.tokenized/news.2010.en.shuffled.tokenized
+84375014a39c52642badac2e135c1e79  training-monolingual.tokenized/news.2011.en.shuffled.tokenized
+f718496cda6819875302f39b622450c4  training-monolingual.tokenized/news.20XX.en.shuffled.tokenized.sorted
+
+CHECKPOINT 4: split data
+$ md5sum training-monolingual.tokenized.shuffled/* heldout-monolingual.tokenized.shuffled/*
+f55d971116b24f1a8d5f1f7b263d24f2  training-monolingual.tokenized.shuffled/news.en-00001-of-00100
+4af811b0d2bfe150c57d3011cf840b21  training-monolingual.tokenized.shuffled/news.en-00002-of-00100
+ed5a24e9459ec925d99f792ac0c2f1f1  training-monolingual.tokenized.shuffled/news.en-00003-of-00100
+1b2b7d2bf98e898ed4a8bc52b6e6ac23  training-monolingual.tokenized.shuffled/news.en-00004-of-00100
+86b5c1a7e53fc2af2b050fc022e381ec  training-monolingual.tokenized.shuffled/news.en-00005-of-00100
+b39af80bb46b1769d983dc0cfb4be3dd  training-monolingual.tokenized.shuffled/news.en-00006-of-00100
+8246bc5db8431bff4668e501dba7f9ce  training-monolingual.tokenized.shuffled/news.en-00007-of-00100
+a9148ebf33da57da33e1f2090cbeaab5  training-monolingual.tokenized.shuffled/news.en-00008-of-00100
+6e59a6118b26e163857ed8ee669300ef  training-monolingual.tokenized.shuffled/news.en-00009-of-00100
+e6d15e14771998617fe946339573881e  training-monolingual.tokenized.shuffled/news.en-00010-of-00100
+ea42a14841c728db297b9c56c1c6614e  training-monolingual.tokenized.shuffled/news.en-00011-of-00100
+e64b089a58e4d1895c528ba4280f1ba6  training-monolingual.tokenized.shuffled/news.en-00012-of-00100
+2d86fd93893576f396459aa60253fdb1  training-monolingual.tokenized.shuffled/news.en-00013-of-00100
+cd8950fca5bb91e35987697bb364be20  training-monolingual.tokenized.shuffled/news.en-00014-of-00100
+1eb7cb3db9a88f4e4aedce86758022bb  training-monolingual.tokenized.shuffled/news.en-00015-of-00100
+174a6ffbdaac299252321707c384f845  training-monolingual.tokenized.shuffled/news.en-00016-of-00100
+e4f00f76031fec405978b03fdbf2c3b5  training-monolingual.tokenized.shuffled/news.en-00017-of-00100
+c2dfda88ab179f0b09f7e734b102716c  training-monolingual.tokenized.shuffled/news.en-00018-of-00100
+9161d734a89ae912a2bf5925137b1f53  training-monolingual.tokenized.shuffled/news.en-00019-of-00100
+e160e59ed7dee25fcf0ebbcbaf1e21a1  training-monolingual.tokenized.shuffled/news.en-00020-of-00100
+51bc3baee20381d3e954fc61e309bc02  training-monolingual.tokenized.shuffled/news.en-00021-of-00100
+b27e13e3efb039d8c30c5f82f13e4549  training-monolingual.tokenized.shuffled/news.en-00022-of-00100
+6ca451402cadeabf8215a5006e232780  training-monolingual.tokenized.shuffled/news.en-00023-of-00100
+ae24cb9f7f07853a333c60e71533006e  training-monolingual.tokenized.shuffled/news.en-00024-of-00100
+65af6338be7c2acd98826159f8fd56d9  training-monolingual.tokenized.shuffled/news.en-00025-of-00100
+3d5a24bec1a17beecc01aaf147564d00  training-monolingual.tokenized.shuffled/news.en-00026-of-00100
+5acac983b093b63f08fc94e5e97cd760  training-monolingual.tokenized.shuffled/news.en-00027-of-00100
+3ad29fff929462d39c9490f1b19a5249  training-monolingual.tokenized.shuffled/news.en-00028-of-00100
+355aea886628b9c1bd644762ea062419  training-monolingual.tokenized.shuffled/news.en-00029-of-00100
+aa777225230c5bd44af297d6f5e5add7  training-monolingual.tokenized.shuffled/news.en-00030-of-00100
+1c9fdc1986d65172d5b96e3f4b6b4c9f  training-monolingual.tokenized.shuffled/news.en-00031-of-00100
+219dfb09b333aff71c21a5717ad7b172  training-monolingual.tokenized.shuffled/news.en-00032-of-00100
+30bf06763a9a49d049cc85689f40bf2b  training-monolingual.tokenized.shuffled/news.en-00033-of-00100
+8a7b4d409072a444963efcb7a07bccd3  training-monolingual.tokenized.shuffled/news.en-00034-of-00100
+dd28d8934ec2ea84b4b48fa4c496b968  training-monolingual.tokenized.shuffled/news.en-00035-of-00100
+2c9526144adee8484f0ee789e0a3dc59  training-monolingual.tokenized.shuffled/news.en-00036-of-00100
+358add825d47be3a56b7beea851384e8  training-monolingual.tokenized.shuffled/news.en-00037-of-00100
+8944c156014153b5c4e0648c9612b4be  training-monolingual.tokenized.shuffled/news.en-00038-of-00100
+c458a1627ad76a9b159f14a4eaf3ef1c  training-monolingual.tokenized.shuffled/news.en-00039-of-00100
+0220fee61e0b8aae41dbe0892211b745  training-monolingual.tokenized.shuffled/news.en-00040-of-00100
+5e2db5b057afd2ce2e0526b68af49762  training-monolingual.tokenized.shuffled/news.en-00041-of-00100
+73efdd4e98c1a0bb428b277143565b00  training-monolingual.tokenized.shuffled/news.en-00042-of-00100
+3e630a8804d53e96d551b0d7547e9c1d  training-monolingual.tokenized.shuffled/news.en-00043-of-00100
+2cebc21681624ddc86919e9d62723edb  training-monolingual.tokenized.shuffled/news.en-00044-of-00100
+19b25d3374a7531c621c63723226024a  training-monolingual.tokenized.shuffled/news.en-00045-of-00100
+a58bc96acfa50b71d176d4fab9bcb822  training-monolingual.tokenized.shuffled/news.en-00046-of-00100
+279a34c524caabd152ffd46223927fe3  training-monolingual.tokenized.shuffled/news.en-00047-of-00100
+496251730ec3d7e315cf14d3828ac8e7  training-monolingual.tokenized.shuffled/news.en-00048-of-00100
+fc1e8b81ce3a3523ef3d86411cf53be5  training-monolingual.tokenized.shuffled/news.en-00049-of-00100
+64dad350365a9897f1a36cf5b622b270  training-monolingual.tokenized.shuffled/news.en-00050-of-00100
+f9da99c71c5ef492e5a51715dece8191  training-monolingual.tokenized.shuffled/news.en-00051-of-00100
+18124584015ee313a1f6395068e2e9f7  training-monolingual.tokenized.shuffled/news.en-00052-of-00100
+427812d7916b5b6d4021d6019f99e1dd  training-monolingual.tokenized.shuffled/news.en-00053-of-00100
+0907c41a1cbeb03c9405d19823c61691  training-monolingual.tokenized.shuffled/news.en-00054-of-00100
+26ec12222feb769c39648599251b4909  training-monolingual.tokenized.shuffled/news.en-00055-of-00100
+5d7554827ada9c46ecb38bafa9b44f63  training-monolingual.tokenized.shuffled/news.en-00056-of-00100
+434a94ad1e8eb549c26bad7f6282fa76  training-monolingual.tokenized.shuffled/news.en-00057-of-00100
+ef61fb4134d5693114c0081948dc72d0  training-monolingual.tokenized.shuffled/news.en-00058-of-00100
+59445a2bf8f031dcbd22ab72410f1143  training-monolingual.tokenized.shuffled/news.en-00059-of-00100
+870c89914328fde098888a76ac67b37a  training-monolingual.tokenized.shuffled/news.en-00060-of-00100
+31dc092ba3fdd13f6b2884b7717088bf  training-monolingual.tokenized.shuffled/news.en-00061-of-00100
+e8d98593a191ebefb11205da02bc8279  training-monolingual.tokenized.shuffled/news.en-00062-of-00100
+e6a5b6533c62322988d706cbe2740b31  training-monolingual.tokenized.shuffled/news.en-00063-of-00100
+b825cd23af4c3288359a24c6a2f0b75c  training-monolingual.tokenized.shuffled/news.en-00064-of-00100
+70c87643bc4f8ccdcdf25f312a1747b6  training-monolingual.tokenized.shuffled/news.en-00065-of-00100
+82de283f02824afda5f37fecebe99493  training-monolingual.tokenized.shuffled/news.en-00066-of-00100
+56c137fc20f2c0fd160b86a57504e6af  training-monolingual.tokenized.shuffled/news.en-00067-of-00100
+722b8e09ba11f5f7b10b81db2c562918  training-monolingual.tokenized.shuffled/news.en-00068-of-00100
+cffc272912e52fb511820cde2bcd1606  training-monolingual.tokenized.shuffled/news.en-00069-of-00100
+4dd6e27a74abde794da2d5fa5f7e7bcc  training-monolingual.tokenized.shuffled/news.en-00070-of-00100
+4bc8a57118a501e2d5640af40b57654c  training-monolingual.tokenized.shuffled/news.en-00071-of-00100
+77f3e80bbe1ca0dc5deecaa5af2b3a02  training-monolingual.tokenized.shuffled/news.en-00072-of-00100
+2337b53b6d80fe7df4f1ee47440e0ac1  training-monolingual.tokenized.shuffled/news.en-00073-of-00100
+15ac2cd136656f1d553f44325f491dbf  training-monolingual.tokenized.shuffled/news.en-00074-of-00100
+e007d4e5c691360fa83d74a2f7f93337  training-monolingual.tokenized.shuffled/news.en-00075-of-00100
+4e6e3d747acf01e9cf2f2ae95a1e2043  training-monolingual.tokenized.shuffled/news.en-00076-of-00100
+b9e92d40e26dd7eb4e4d427e3792328f  training-monolingual.tokenized.shuffled/news.en-00077-of-00100
+c2fafd297a6b1a162aed62c5af24f7a7  training-monolingual.tokenized.shuffled/news.en-00078-of-00100
+ec09f0f592feedb1f35f0da1512942f1  training-monolingual.tokenized.shuffled/news.en-00079-of-00100
+8aaa93ecb456b0a6a4482ffb1049f6c4  training-monolingual.tokenized.shuffled/news.en-00080-of-00100
+bfd194d688eca24c8e3cae9f269ed857  training-monolingual.tokenized.shuffled/news.en-00081-of-00100
+aac016f0b4a191ce3757e2d78b70cb4f  training-monolingual.tokenized.shuffled/news.en-00082-of-00100
+a5a60d6282792d166129b8c89378d2e6  training-monolingual.tokenized.shuffled/news.en-00083-of-00100
+c026479e9893d3e19ce271093477fc3f  training-monolingual.tokenized.shuffled/news.en-00084-of-00100
+fd1e8fd57469c27671b13add7c705465  training-monolingual.tokenized.shuffled/news.en-00085-of-00100
+ed5796987b95ee05b06c6d8c6aed8fae  training-monolingual.tokenized.shuffled/news.en-00086-of-00100
+b9a64617b353fc4fd472f63abcd0a02a  training-monolingual.tokenized.shuffled/news.en-00087-of-00100
+034d294b532d613bda6693e62b14375c  training-monolingual.tokenized.shuffled/news.en-00088-of-00100
+f6293c59ba6f193db161b880cb6b6389  training-monolingual.tokenized.shuffled/news.en-00089-of-00100
+f3e00ab4276298a80f839128b03efede  training-monolingual.tokenized.shuffled/news.en-00090-of-00100
+b9b695a83a4d678843e43f2b44490d31  training-monolingual.tokenized.shuffled/news.en-00091-of-00100
+753729f7a741e10ac8cf3d4166cb8d6f  training-monolingual.tokenized.shuffled/news.en-00092-of-00100
+a1ce80c68c23a4e03b3a81884e118c18  training-monolingual.tokenized.shuffled/news.en-00093-of-00100
+820e944082c4acd9c495a9ef6459c317  training-monolingual.tokenized.shuffled/news.en-00094-of-00100
+3a60403a7fac1d1df4b8284a12bdda54  training-monolingual.tokenized.shuffled/news.en-00095-of-00100
+813967650da3ef9be2576317e1ecfd8e  training-monolingual.tokenized.shuffled/news.en-00096-of-00100
+ecfbfc0913489a1a2dc923847c846cfb  training-monolingual.tokenized.shuffled/news.en-00097-of-00100
+0d794a2ab6ff77f866fef3c102d4b650  training-monolingual.tokenized.shuffled/news.en-00098-of-00100
+3a0b2bd004bebf95ec7533fc7fa4e7b7  training-monolingual.tokenized.shuffled/news.en-00099-of-00100
+eb187d3fba8e6092654e63899832f474  heldout-monolingual.tokenized.shuffled/news.en-00000-of-00100
+d2690ce74954dfce50461063a9d95994  heldout-monolingual.tokenized.shuffled/news.en.heldout-00000-of-00050
+b653bb6c279b4c9677d858a87cabefbb  heldout-monolingual.tokenized.shuffled/news.en.heldout-00001-of-00050
+0537075660acf34a1b9b764cc359f66f  heldout-monolingual.tokenized.shuffled/news.en.heldout-00002-of-00050
+b7bc599f4af4027dbe5ed1b8c7b2ce0d  heldout-monolingual.tokenized.shuffled/news.en.heldout-00003-of-00050
+410108a57e4dd9d2082727ffa529c9a8  heldout-monolingual.tokenized.shuffled/news.en.heldout-00004-of-00050
+ca4acac9fab48f54dcdece7842c72607  heldout-monolingual.tokenized.shuffled/news.en.heldout-00005-of-00050
+1e24c3baea8f3f234e37271a0153fe51  heldout-monolingual.tokenized.shuffled/news.en.heldout-00006-of-00050
+feb520f61eb70178afb92c5bafa169eb  heldout-monolingual.tokenized.shuffled/news.en.heldout-00007-of-00050
+00b0a32479fadc29829b3bbddc3eae07  heldout-monolingual.tokenized.shuffled/news.en.heldout-00008-of-00050
+eac67758972d8c5f1441587e88d303b3  heldout-monolingual.tokenized.shuffled/news.en.heldout-00009-of-00050
+b7b6189b05643db0eeab260e1edae15d  heldout-monolingual.tokenized.shuffled/news.en.heldout-00010-of-00050
+a219f1c00272044cf5160faf973d6f41  heldout-monolingual.tokenized.shuffled/news.en.heldout-00011-of-00050
+048924e90aa7b541aab4744b2096556c  heldout-monolingual.tokenized.shuffled/news.en.heldout-00012-of-00050
+982caf49087cc51699209184e64c7261  heldout-monolingual.tokenized.shuffled/news.en.heldout-00013-of-00050
+9f3250ce07a7a85219fecc1276967dc5  heldout-monolingual.tokenized.shuffled/news.en.heldout-00014-of-00050
+ae5a72b94ac95a15eaf2bdefa6636a82  heldout-monolingual.tokenized.shuffled/news.en.heldout-00015-of-00050
+b77deec0133ef11552dd0e060a36dcea  heldout-monolingual.tokenized.shuffled/news.en.heldout-00016-of-00050
+a56fb9a6252081ae351fdb1498717826  heldout-monolingual.tokenized.shuffled/news.en.heldout-00017-of-00050
+bfa51132c22c9aca62fdacd71aa385c2  heldout-monolingual.tokenized.shuffled/news.en.heldout-00018-of-00050
+6c10df53eb0120fe1004f2127d725096  heldout-monolingual.tokenized.shuffled/news.en.heldout-00019-of-00050
+0b034a9b56964c36f32f9f1a7a4df47c  heldout-monolingual.tokenized.shuffled/news.en.heldout-00020-of-00050
+3a347e66ee0adc9faea140504462680a  heldout-monolingual.tokenized.shuffled/news.en.heldout-00021-of-00050
+57e64e47643ccc60c73a203900dfe644  heldout-monolingual.tokenized.shuffled/news.en.heldout-00022-of-00050
+03565ec59836aaf82f9b3a1f6e1e6aa7  heldout-monolingual.tokenized.shuffled/news.en.heldout-00023-of-00050
+32f657ea0bc034cd8246874ff7d29d08  heldout-monolingual.tokenized.shuffled/news.en.heldout-00024-of-00050
+c6f560b6feda7e1e029ba0d007d8dd23  heldout-monolingual.tokenized.shuffled/news.en.heldout-00025-of-00050
+6050caa490aea777ddd1d84e63488453  heldout-monolingual.tokenized.shuffled/news.en.heldout-00026-of-00050
+0f6524448cf6239095fed264c18d5864  heldout-monolingual.tokenized.shuffled/news.en.heldout-00027-of-00050
+238609e1b1f59cd1caa2c7820477b669  heldout-monolingual.tokenized.shuffled/news.en.heldout-00028-of-00050
+7077cfdbaa93ef139cefc41d36faab1e  heldout-monolingual.tokenized.shuffled/news.en.heldout-00029-of-00050
+e06902b20caf17b5e53673475d269f85  heldout-monolingual.tokenized.shuffled/news.en.heldout-00030-of-00050
+d5f4f3ed9135488f1dfa8afcd8f8e571  heldout-monolingual.tokenized.shuffled/news.en.heldout-00031-of-00050
+4af7f2c1c030fe2ee3cd709ef32043fb  heldout-monolingual.tokenized.shuffled/news.en.heldout-00032-of-00050
+06aa55b87e1da4d41ed4618e9c6c06ea  heldout-monolingual.tokenized.shuffled/news.en.heldout-00033-of-00050
+21bbc5a5aa05687b641e353e066bd202  heldout-monolingual.tokenized.shuffled/news.en.heldout-00034-of-00050
+fb5deb6736201c69509ec50a98cf6db8  heldout-monolingual.tokenized.shuffled/news.en.heldout-00035-of-00050
+2789140a9ef1e53814f2548eeeada266  heldout-monolingual.tokenized.shuffled/news.en.heldout-00036-of-00050
+bf9e0f01181f3b368f7b3614e674920e  heldout-monolingual.tokenized.shuffled/news.en.heldout-00037-of-00050
+248f17d5058f0f71d7ad6d3e33924254  heldout-monolingual.tokenized.shuffled/news.en.heldout-00038-of-00050
+d44bf14d3db88db4ab2438cbde1b4548  heldout-monolingual.tokenized.shuffled/news.en.heldout-00039-of-00050
+2d24ecc8eb91917258ff60a33fd986db  heldout-monolingual.tokenized.shuffled/news.en.heldout-00040-of-00050
+3ede34f95ee2fc871351e4cc2b049e81  heldout-monolingual.tokenized.shuffled/news.en.heldout-00041-of-00050
+a4e6d8d65fa5f3d57d8f7dc3c95ede14  heldout-monolingual.tokenized.shuffled/news.en.heldout-00042-of-00050
+0f129ebb8bad81a5e161fc694767b21f  heldout-monolingual.tokenized.shuffled/news.en.heldout-00043-of-00050
+788afa25ab3343e0af3757742f214b94  heldout-monolingual.tokenized.shuffled/news.en.heldout-00044-of-00050
+96ae2bf6dbe50465b44fc8036bb7e657  heldout-monolingual.tokenized.shuffled/news.en.heldout-00045-of-00050
+844fe32d9bc33d5a0bcd42d651e92e9a  heldout-monolingual.tokenized.shuffled/news.en.heldout-00046-of-00050
+53b0f6e3867d5289e1e6e04eae1935b0  heldout-monolingual.tokenized.shuffled/news.en.heldout-00047-of-00050
+6ccb1bb4731adb7871617e2b52179b6d  heldout-monolingual.tokenized.shuffled/news.en.heldout-00048-of-00050
+e3922dee58e0c4ed7ae997fbb923160c  heldout-monolingual.tokenized.shuffled/news.en.heldout-00049-of-00050
+
+Versions of various utilities:
+
+$ perl --V
+==========
+Summary of my perl5 (revision 5 version 14 subversion 2) configuration:
+   
+  Platform:
+    osname=linux, osvers=2.6.42-37-generic, archname=x86_64-linux-gnu-thread-multi
+    uname='linux batsu 2.6.42-37-generic #58-ubuntu smp thu jan 24 15:28:10 utc 2013 x86_64 x86_64 x86_64 gnulinux '
+    config_args='-Dusethreads -Duselargefiles -Dccflags=-DDEBIAN -Dcccdlflags=-fPIC -Darchname=x86_64-linux-gnu -Dprefix=/usr -Dprivlib=/usr/share/perl/5.14 -Darchlib=/usr/lib/perl/5.14 -Dvendorprefix=/usr -Dvendorlib=/usr/share/perl5 -Dvendorarch=/usr/lib/perl5 -Dsiteprefix=/usr/local -Dsitelib=/usr/local/share/perl/5.14.2 -Dsitearch=/usr/local/lib/perl/5.14.2 -Dman1dir=/usr/share/man/man1 -Dman3dir=/usr/share/man/man3 -Dsiteman1dir=/usr/local/man/man1 -Dsiteman3dir=/usr/local/man/man3 -Duse64bitint -Dman1ext=1 -Dman3ext=3perl -Dpager=/usr/bin/sensible-pager -Uafs -Ud_csh -Ud_ualarm -Uusesfio -Uusenm -Ui_libutil -DDEBUGGING=-g -Doptimize=-O2 -Duseshrplib -Dlibperl=libperl.so.5.14.2 -des'
+    hint=recommended, useposix=true, d_sigaction=define
+    useithreads=define, usemultiplicity=define
+    useperlio=define, d_sfio=undef, uselargefiles=define, usesocks=undef
+    use64bitint=define, use64bitall=define, uselongdouble=undef
+    usemymalloc=n, bincompat5005=undef
+  Compiler:
+    cc='cc', ccflags ='-D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64',
+    optimize='-O2 -g',
+    cppflags='-D_REENTRANT -D_GNU_SOURCE -DDEBIAN -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include'
+    ccversion='', gccversion='4.6.3', gccosandvers=''
+    intsize=4, longsize=8, ptrsize=8, doublesize=8, byteorder=12345678
+    d_longlong=define, longlongsize=8, d_longdbl=define, longdblsize=16
+    ivtype='long', ivsize=8, nvtype='double', nvsize=8, Off_t='off_t', lseeksize=8
+    alignbytes=8, prototype=define
+  Linker and Libraries:
+    ld='cc', ldflags =' -fstack-protector -L/usr/local/lib'
+    libpth=/usr/local/lib /lib/x86_64-linux-gnu /lib/../lib /usr/lib/x86_64-linux-gnu /usr/lib/../lib /lib /usr/lib
+    libs=-lgdbm -lgdbm_compat -ldb -ldl -lm -lpthread -lc -lcrypt
+    perllibs=-ldl -lm -lpthread -lc -lcrypt
+    libc=, so=so, useshrplib=true, libperl=libperl.so.5.14.2
+    gnulibc_version='2.15'
+  Dynamic Linking:
+    dlsrc=dl_dlopen.xs, dlext=so, d_dlsymun=undef, ccdlflags='-Wl,-E'
+    cccdlflags='-fPIC', lddlflags='-shared -O2 -g -L/usr/local/lib -fstack-protector'
+
+
+Characteristics of this binary (from libperl): 
+  Compile-time options: MULTIPLICITY PERL_DONT_CREATE_GVSV
+                        PERL_IMPLICIT_CONTEXT PERL_MALLOC_WRAP
+                        PERL_PRESERVE_IVUV USE_64_BIT_ALL USE_64_BIT_INT
+                        USE_ITHREADS USE_LARGE_FILES USE_PERLIO USE_PERL_ATOF
+                        USE_REENTRANT_API
+  Locally applied patches:
+	DEBPKG:debian/arm_thread_stress_timeout - http://bugs.debian.org/501970 Raise the timeout of ext/threads/shared/t/stress.t to accommodate slower build hosts
+	DEBPKG:debian/cpan_definstalldirs - Provide a sensible INSTALLDIRS default for modules installed from CPAN.
+	DEBPKG:debian/db_file_ver - http://bugs.debian.org/340047 Remove overly restrictive DB_File version check.
+	DEBPKG:debian/doc_info - Replace generic man(1) instructions with Debian-specific information.
+	DEBPKG:debian/enc2xs_inc - http://bugs.debian.org/290336 Tweak enc2xs to follow symlinks and ignore missing @INC directories.
+	DEBPKG:debian/errno_ver - http://bugs.debian.org/343351 Remove Errno version check due to upgrade problems with long-running processes.
+	DEBPKG:debian/libperl_embed_doc - http://bugs.debian.org/186778 Note that libperl-dev package is required for embedded linking
+	DEBPKG:fixes/respect_umask - Respect umask during installation
+	DEBPKG:debian/writable_site_dirs - Set umask approproately for site install directories
+	DEBPKG:debian/extutils_set_libperl_path - EU:MM: Set location of libperl.a to /usr/lib
+	DEBPKG:debian/no_packlist_perllocal - Don't install .packlist or perllocal.pod for perl or vendor
+	DEBPKG:debian/prefix_changes - Fiddle with *PREFIX and variables written to the makefile
+	DEBPKG:debian/fakeroot - Postpone LD_LIBRARY_PATH evaluation to the binary targets.
+	DEBPKG:debian/instmodsh_doc - Debian policy doesn't install .packlist files for core or vendor.
+	DEBPKG:debian/ld_run_path - Remove standard libs from LD_RUN_PATH as per Debian policy.
+	DEBPKG:debian/libnet_config_path - Set location of libnet.cfg to /etc/perl/Net as /usr may not be writable.
+	DEBPKG:debian/m68k_thread_stress - http://bugs.debian.org/517938 http://bugs.debian.org/495826 Disable some threads tests on m68k for now due to missing TLS.
+	DEBPKG:debian/mod_paths - Tweak @INC ordering for Debian
+	DEBPKG:debian/module_build_man_extensions - http://bugs.debian.org/479460 Adjust Module::Build manual page extensions for the Debian Perl policy
+	DEBPKG:debian/prune_libs - http://bugs.debian.org/128355 Prune the list of libraries wanted to what we actually need.
+	DEBPKG:fixes/net_smtp_docs - [rt.cpan.org #36038] http://bugs.debian.org/100195 Document the Net::SMTP 'Port' option
+	DEBPKG:debian/perlivp - http://bugs.debian.org/510895 Make perlivp skip include directories in /usr/local
+	DEBPKG:debian/disable-zlib-bundling - Disable zlib bundling in Compress::Raw::Zlib
+	DEBPKG:debian/cpanplus_definstalldirs - http://bugs.debian.org/533707 Configure CPANPLUS to use the site directories by default.
+	DEBPKG:debian/cpanplus_config_path - Save local versions of CPANPLUS::Config::System into /etc/perl.
+	DEBPKG:debian/deprecate-with-apt - http://bugs.debian.org/580034 Point users to Debian packages of deprecated core modules
+	DEBPKG:fixes/hurd-ccflags - [a190e64] http://bugs.debian.org/587901 [perl #92244] Make hints/gnu.sh append to $ccflags rather than overriding them
+	DEBPKG:debian/squelch-locale-warnings - http://bugs.debian.org/508764 Squelch locale warnings in Debian package maintainer scripts
+	DEBPKG:debian/skip-upstream-git-tests - Skip tests specific to the upstream Git repository
+	DEBPKG:fixes/extutils-cbuilder-cflags - [011e8fb] http://bugs.debian.org/624460 [perl #89478] Append CFLAGS and LDFLAGS to their Config.pm counterparts in EU::CBuilder
+	DEBPKG:fixes/module-build-home-directory - http://bugs.debian.org/624850 [rt.cpan.org #67893] Fix failing tilde test when run under a UID without a passwd entry
+	DEBPKG:debian/patchlevel - http://bugs.debian.org/567489 List packaged patches for 5.14.2-6ubuntu2.3 in patchlevel.h
+	DEBPKG:fixes/h2ph-multiarch - [e7ec705] http://bugs.debian.org/625808 [perl #90122] Make h2ph correctly search gcc include directories
+	DEBPKG:fixes/index-tainting - [3b36395] http://bugs.debian.org/291450 [perl #64804] RT 64804: tainting with index() of a constant
+	DEBPKG:debian/skip-kfreebsd-crash - http://bugs.debian.org/628493 [perl #96272] Skip a crashing test case in t/op/threads.t on GNU/kFreeBSD
+	DEBPKG:fixes/document_makemaker_ccflags - http://bugs.debian.org/628522 [rt.cpan.org #68613] Document that CCFLAGS should include $Config{ccflags}
+	DEBPKG:fixes/sys-syslog-socket-timeout-kfreebsd.patch - http://bugs.debian.org/627821 [rt.cpan.org #69997] Use a socket timeout on GNU/kFreeBSD to catch ICMP port unreachable messages
+	DEBPKG:fixes/hurd-hints - http://bugs.debian.org/636609 Improve general GNU hints, needed for GNU/Hurd.
+	DEBPKG:fixes/pod_fixes - [7698aed] http://bugs.debian.org/637816 Fix typos in several pod/perl*.pod files
+	DEBPKG:debian/find_html2text - http://bugs.debian.org/640479 Configure CPAN::Distribution with correct name of html2text
+	DEBPKG:fixes/digest_eval_hole - http://bugs.debian.org/644108 Close the eval "require $module" security hole in Digest->new($algorithm)
+	DEBPKG:fixes/hurd-ndbm - [f0d0a20] [perl #102680] http://bugs.debian.org/645989 Add GNU/Hurd hints for NDBM_File
+	DEBPKG:fixes/sysconf.t-posix - [8040185] [perl #102888] http://bugs.debian.org/646016 Fix hang in ext/POSIX/t/sysconf.t on GNU/Hurd
+	DEBPKG:fixes/hurd-largefile - [1fda587] [perl #103014] http://bugs.debian.org/645790 enable LFS on GNU/Hurd
+	DEBPKG:debian/hurd_test_todo_syslog - http://bugs.debian.org/650093 Disable failing GNU/Hurd tests in cpan/Sys-Syslog/t/syslog.t
+	DEBPKG:fixes/hurd_skip_itimer_virtual - [rt.cpan.org #72754] http://bugs.debian.org/650094 Skip interval timer tests in Time::HiRes on GNU/Hurd
+	DEBPKG:debian/hurd_test_skip_socketpair - http://bugs.debian.org/650186 Disable failing GNU/Hurd tests ext/Socket/t/socketpair.t
+	DEBPKG:debian/hurd_test_skip_sigdispatch - http://bugs.debian.org/650188 Disable failing GNU/Hurd tests op/sigdispatch.t
+	DEBPKG:debian/hurd_test_skip_stack - http://bugs.debian.org/650175 Disable failing GNU/Hurd tests dist/threads/t/stack.t
+	DEBPKG:debian/hurd_test_skip_recv - http://bugs.debian.org/650095 Disable failing GNU/Hurd tests cpan/autodie/t/recv.t
+	DEBPKG:debian/hurd_test_skip_libc - http://bugs.debian.org/650097 Disable failing GNU/Hurd tests dist/threads/t/libc.t
+	DEBPKG:debian/hurd_test_skip_pipe - http://bugs.debian.org/650187 Disable failing GNU/Hurd tests io/pipe.t
+	DEBPKG:debian/hurd_test_skip_io_pipe - http://bugs.debian.org/650096 Disable failing GNU/Hurd tests dist/IO/t/io_pipe.t
+	DEBPKG:fixes/CVE-2012-5195 - avoid calling memset with a negative count
+	DEBPKG:fixes/CVE-2012-5526 - [PATCH 1/4] CR escaping for P3P header
+	DEBPKG:CVE-2013-1667.patch - [PATCH] Prevent premature hsplit() calls, and only trigger REHASH after hsplit()
+  Built under linux
+  Compiled at Mar 18 2013 19:17:55
+  @INC:
+    /etc/perl
+    /usr/local/lib/perl/5.14.2
+    /usr/local/share/perl/5.14.2
+    /usr/lib/perl5
+    /usr/share/perl5
+    /usr/lib/perl/5.14
+    /usr/share/perl/5.14
+    /usr/local/lib/site_perl
+
+$ sort --version    .
+==========
+sort (GNU coreutils) 8.13
+Copyright (C) 2011 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Mike Haertel and Paul Eggert.
+
+$ tar --version
+==========
+tar (GNU tar) 1.26
+Copyright (C) 2011 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by John Gilmore and Jay Fenlason.
