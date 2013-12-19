@@ -56,7 +56,7 @@ done;
 
 # Unique sort of the sentences in the corpus. Quite a few sentences are replicated,
 # dropping the number of words from about 2.9B to about 0.8B.
-sort -u --parallel=10 \
+sort -u \
   --output=./training-monolingual.tokenized/news.20XX.en.shuffled.tokenized.sorted  \
   ./training-monolingual.tokenized/news.20??.en.shuffled.tokenized
 echo "Done sorting corpus."; 
