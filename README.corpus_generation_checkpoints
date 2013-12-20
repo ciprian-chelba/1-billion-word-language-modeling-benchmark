@@ -17,7 +17,15 @@ CHECKPOINT 1: The download from statmt.org has the following size/md5 checksum:
 $ md5sum tar_archives/training-monolingual.tgz 
 cad1cb504001e7bab87d39f3cddaab43  tar_archives/training-monolingual.tgz
 
-CHECKPOINT 2: After running the script.
+CHECKPOINT 2: After extracting the desired files from the tar archive:
+$ md5sum training-monolingual/*
+b7d3968e247b46381c6769dec720390e  training-monolingual/news.2007.en.shuffled
+1a830e457622c9289764573a6a358407  training-monolingual/news.2008.en.shuffled
+3e6ccfca472e76372ac797fddb37081e  training-monolingual/news.2009.en.shuffled
+234a50914d87158754815a0bd86d7b9d  training-monolingual/news.2010.en.shuffled
+f71c2d7b5b4339571e1db44648f877b6  training-monolingual/news.2011.en.shuffled
+
+CHECKPOINT 3: After running the script.
 375c861b071c9911a3647a620a721486  training-monolingual.tokenized/news.20XX.en.shuffled.sorted
 ee29caa74238fce1e7f916b43e298166  training-monolingual.tokenized/news.20XX.en.shuffled.sorted.tokenized
 8926e543891cf5c4cf7ece2c8e4bc5f4  training-monolingual.tokenized.shuffled/news.en-00001-of-00100
