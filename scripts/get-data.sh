@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Copyright 2013 Google Inc. All rights reserved.
 # 
@@ -22,18 +22,12 @@
 # --wildcards training-monolingual/news.20??.en.shuffled
 #
 # Takes the data in:
-# ./training-monolingual/news.20??.en.shuffled
+# ./training-monolingual/news.20??.en.shuffled, removes duplication with sort -u
 # and runs punctuation normalization and tokenization, producing the data in:
-# ./training-monolingual.tokenized/news.20??.en.shuffled.tokenized
+# ./training-monolingual.tokenized/news.20XX.en.shuffled.tokenized
 #
-# It then unique-sorts the data (quite a few sentences are replicated in the data),
-# splits the data in 100 shards, randomly shuffled, sets aside held-out data, and 
-# splits it into 50 test partitions.
-
-# Set environemnt vars LANG and LANGUAGE to make sure all users have the same 
-# locale settings.
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US:
+# It then splits the data in 100 shards, randomly shuffled, sets aside
+# held-out data, and splits it into 50 test partitions.
 
 # Punctuation normalization and tokenization.
 if [ -d training-monolingual.tokenized ]
@@ -43,23 +37,26 @@ else
   mkdir training-monolingual.tokenized
 fi
 
-for year in 2007 2008 2009 2010 2011; do 
-  for language in en; do 
-    echo "Working on training-monolingual/news.${year}.${language}.shuffled"; 
-    time cat training-monolingual/news.${year}.${language}.shuffled | \
-      ./scripts/normalize-punctuation.perl -l $language | \
-      ./scripts/tokenizer.perl -l $language > \
-      training-monolingual.tokenized/news.${year}.${language}.shuffled.tokenized; 
-    echo "Done working on training-monolingual/news.${year}.${language}.shuffled."; 
-  done; 
-done;
-
 # Unique sort of the sentences in the corpus. Quite a few sentences are replicated,
-# dropping the number of words from about 2.9B to about 0.8B.
-sort -u \
-  --output=./training-monolingual.tokenized/news.20XX.en.shuffled.tokenized.sorted  \
-  ./training-monolingual.tokenized/news.20??.en.shuffled.tokenized
-echo "Done sorting corpus."; 
+# dropping the number of words from about 2.9B to about 0.8B.  Use binary/C ordering.
+export LC_ALL=C
+for year in 2007 2008 2009 2010 2011; do 
+  cat training-monolingual/news.${year}.en.shuffled
+done | sort -u --output=training-monolingual.tokenized/news.20XX.en.shuffled.sorted
+echo "Done sorting corpus."
+
+# Set environemnt vars LANG and LANGUAGE to make sure all users have the same 
+# locale settings.
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:
+export LC_ALL=en_US.UTF-8
+
+echo "Working on training-monolingual/news.20XX.en.shuffled.sorted"
+time cat training-monolingual.tokenized/news.20XX.en.shuffled.sorted | \
+  ./scripts/normalize-punctuation.perl -l en | \
+  ./scripts/tokenizer.perl -l en > \
+  training-monolingual.tokenized/news.20XX.en.shuffled.sorted.tokenized
+echo "Done working on training-monolingual/news.20XX.en.shuffled."
 
 # Split the data in 100 shards
 if [ -d training-monolingual.tokenized.shuffled ]
@@ -71,8 +68,8 @@ fi
 ./scripts/split-input-data.perl \
   --output_file_base="$PWD/training-monolingual.tokenized.shuffled/news.en" \
   --num_shards=100 \
-  --input_file=./training-monolingual.tokenized/news.20XX.en.shuffled.tokenized.sorted
-echo "Done splitting/shuffling corpus into 100 shards news.en-000??-of-00100."; 
+  --input_file=training-monolingual.tokenized/news.20XX.en.shuffled.sorted.tokenized
+echo "Done splitting/shuffling corpus into 100 shards news.en-000??-of-00100."
 
 # Hold 00000 shard out, and split it 50 way.
 if [ -d heldout-monolingual.tokenized.shuffled ]
@@ -84,10 +81,10 @@ fi
 
 mv ./training-monolingual.tokenized.shuffled/news.en-00000-of-00100 \
   heldout-monolingual.tokenized.shuffled/
-echo "Set aside shard 00000 of news.en-000??-of-00100 as held-out data."; 
+echo "Set aside shard 00000 of news.en-000??-of-00100 as held-out data."
 
 ./scripts/split-input-data.perl \
   --output_file_base="$PWD/heldout-monolingual.tokenized.shuffled/news.en.heldout" \
   --num_shards=50 \
-  --input_file=./heldout-monolingual.tokenized.shuffled/news.en-00000-of-00100
-echo "Done splitting/shuffling held-out data into 50 shards."; 
+  --input_file=heldout-monolingual.tokenized.shuffled/news.en-00000-of-00100
+echo "Done splitting/shuffling held-out data into 50 shards."
