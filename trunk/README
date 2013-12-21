@@ -72,90 +72,105 @@ Here are the out-of-vocabulary (OoV) rates and perplexity (PPL)/n-gram hit ratio
 See README.perplexity_and_such for a description on how we compute perplexity, out-of-vocabulary rate,
 and back-off hit ratios.
 
-oov rate:      480 /  158539 ( 0.30%)
-oov rate:      756 /  159787 ( 0.47%)
-oov rate:      448 /  159753 ( 0.28%)
-oov rate:      641 /  165553 ( 0.39%)
-oov rate:      516 /  158017 ( 0.33%)
-oov rate:      498 /  165514 ( 0.30%)
-oov rate:      431 /  161884 ( 0.27%)
-oov rate:      517 /  159189 ( 0.32%)
-oov rate:      495 /  160108 ( 0.31%)
-oov rate:      480 /  161084 ( 0.30%)
+ oov rate:      446 /  159658 ( 0.28%)
+ oov rate:      524 /  165560 ( 0.32%)
+ oov rate:      506 /  159982 ( 0.32%)
+ oov rate:      463 /  161238 ( 0.29%)
+ oov rate:      506 /  164687 ( 0.31%)
+ oov rate:      461 /  162336 ( 0.28%)
+ oov rate:      515 /  158574 ( 0.32%)
+ oov rate:      462 /  164473 ( 0.28%)
+ oov rate:      516 /  162800 ( 0.32%)
+ oov rate:      522 /  163597 ( 0.32%)
 
 Katz, unpruned, n=5, 1.1B n-grams:
-totalcount = 825422561
-num_ngrams = 791886 39341695 188830352 384501043 513864433 (total: 1127329409)
-Perplexity for 158539 n-grams: 87.9538 (1...5-gram hit ratios = 100.00%, 97.18%, 82.15%, 56.94%, 35.71%)
-Perplexity for 159787 n-grams: 85.6429
-Perplexity for 159753 n-grams: 85.2686
-Perplexity for 165553 n-grams: 86.3777
-Perplexity for 158017 n-grams: 88.4041
-Perplexity for 165514 n-grams: 84.2656
-Perplexity for 161884 n-grams: 86.1193
-Perplexity for 159189 n-grams: 85.5989
-Perplexity for 160108 n-grams: 82.1627
-Perplexity for 161084 n-grams: 87.2661
+ totalcount = 829250940
+ num_ngrams = 793471 39347422 188838562 384508104 513871498 (total: 1127359057)
+
+shard 00000:
+ covered 1-grams:   159658 /  159658 (100.00%)
+ covered 2-grams:   155451 /  159658 (97.36%)
+ covered 3-grams:   127532 /  153583 (83.04%)
+ covered 4-grams:    86365 /  147508 (58.55%)
+ covered 5-grams:    53245 /  141433 (37.65%)
+
+shards 00000-00009:
+ Perplexity for 159658 n-grams: 79.8771
+ Perplexity for 165560 n-grams: 86.2621
+ Perplexity for 159982 n-grams: 84.2730
+ Perplexity for 161238 n-grams: 82.8191
+ Perplexity for 164687 n-grams: 83.9454
+ Perplexity for 162336 n-grams: 86.6045
+ Perplexity for 158574 n-grams: 87.0900
+ Perplexity for 164473 n-grams: 83.1226
+ Perplexity for 162800 n-grams: 83.3353
+ Perplexity for 163597 n-grams: 83.8254
 
 Katz, pruned, n=5, 15M n-grams:
-totalcount = 825422561
-num_ngrams = 791886 6038040 6018996 1814253 178285 (total: 14841460)
-Perplexity for 158539 n-grams: 135.7564 (1...5-gram hit ratios = 100.00%, 91.98%, 49.86%, 11.40%, 1.09%)
-Perplexity for 159787 n-grams: 131.8280
-Perplexity for 159753 n-grams: 130.9167
-Perplexity for 165553 n-grams: 132.7336
-Perplexity for 158017 n-grams: 135.4353
-Perplexity for 165514 n-grams: 129.8195
-Perplexity for 161884 n-grams: 131.4653
-Perplexity for 159189 n-grams: 132.3367
-Perplexity for 160108 n-grams: 129.9689
-Perplexity for 161084 n-grams: 135.6411
+ totalcount = 829250940
+ num_ngrams = 793471 6028697 6023662 1818975 178586 (total: 14843391)
+
+shard 00000:
+ covered 1-grams:   159658 /  159658 (100.00%)
+ covered 2-grams:   147368 /  159658 (92.30%)
+ covered 3-grams:    77541 /  153583 (50.49%)
+ covered 4-grams:    17559 /  147508 (11.90%)
+ covered 5-grams:     1717 /  141433 ( 1.21%)
+
+shards 00000-00009:
+ Perplexity for 159658 n-grams: 127.4522
+ Perplexity for 165560 n-grams: 135.4776
+ Perplexity for 159982 n-grams: 131.6153
+ Perplexity for 161238 n-grams: 130.3873
+ Perplexity for 164687 n-grams: 132.7091
+ Perplexity for 162336 n-grams: 134.0019
+ Perplexity for 158574 n-grams: 136.2535
+ Perplexity for 164473 n-grams: 131.5179
+ Perplexity for 162800 n-grams: 130.4547
+ Perplexity for 163597 n-grams: 129.9707
 
 Interpolated Kneser-Ney, unpruned, n=5, 1.1B n-grams:
-totalcount = 825422561
-num_ngrams = 791886 39341697 189072431 388021547 527528817 (total: 1144756378)
-Perplexity for 158539 n-grams: 74.3795 (1...5-gram hit ratios = 100.00%, 97.18%, 82.82%, 59.92%, 41.72%)
-Perplexity for 159787 n-grams: 72.5581
-Perplexity for 159753 n-grams: 72.6330
-Perplexity for 165553 n-grams: 73.2244
-Perplexity for 158017 n-grams: 74.9420
-Perplexity for 165514 n-grams: 71.2567
-Perplexity for 161884 n-grams: 73.1254
-Perplexity for 159189 n-grams: 72.5676
-Perplexity for 160108 n-grams: 69.5561
-Perplexity for 161084 n-grams: 73.8883
+ totalcount = 829250940
+ num_ngrams = 793471 39347424 189080713 388028847 527536365 (total: 1144786820)
+
+shard 00000:
+ covered 1-grams:   159658 /  159658 (100.00%)
+ covered 2-grams:   155451 /  159658 (97.36%)
+ covered 3-grams:   133586 /  159658 (83.67%)
+ covered 4-grams:    98104 /  159658 (61.45%)
+ covered 5-grams:    69525 /  159658 (43.55%)
+
+shards 00000-00009:
+ Perplexity for 159658 n-grams: 67.6118
+ Perplexity for 165560 n-grams: 73.0527
+ Perplexity for 159982 n-grams: 71.3472
+ Perplexity for 161238 n-grams: 70.4651
+ Perplexity for 164687 n-grams: 71.1141
+ Perplexity for 162336 n-grams: 73.5345
+ Perplexity for 158574 n-grams: 73.5653
+ Perplexity for 164473 n-grams: 70.4316
+ Perplexity for 162800 n-grams: 70.8092
+ Perplexity for 163597 n-grams: 71.0961
 
 Interpolated Kneser-Ney, pruned, n=5, 14M n-grams:
-totalcount = 825422561
-num_ngrams = 791886 8703936 4216100 460889 16743 (total: 14189554)
-Perplexity for 158539 n-grams: 246.3167 (1...5-gram hit ratios = 100.00%, 86.52%, 35.84%, 3.97%, 0.17%)
-Perplexity for 159787 n-grams: 242.1531
-Perplexity for 159753 n-grams: 241.9882
-Perplexity for 165553 n-grams: 243.6675
-Perplexity for 158017 n-grams: 248.4639
-Perplexity for 165514 n-grams: 241.8187
-Perplexity for 161884 n-grams: 244.9498
-Perplexity for 159189 n-grams: 244.3134
-Perplexity for 160108 n-grams: 241.1720
-Perplexity for 161084 n-grams: 247.4707
+ totalcount = 829250940
+ num_ngrams = 793471 8702286 4215561 461927 16912 (total: 14190157)
 
+shard 00000:
+ covered 1-grams:   159658 /  159658 (100.00%)
+ covered 2-grams:   138172 /  159658 (86.54%)
+ covered 3-grams:    57238 /  159658 (35.85%)
+ covered 4-grams:     6456 /  159658 ( 4.04%)
+ covered 5-grams:      259 /  159658 ( 0.16%)
 
-Table summarizing the results, including the mean/standard deviation of PPL across 
-each of the heldout sets:
-
-# n-grams       Perplexity
-                -------------------------------------------------------------------
-                Kneser-Ney      Katz            pruned Kneser-Ney       pruned Katz
------------------------------------------------------------------------------------
-158539		74.3795		87.9538		246.3167		135.7564
-159787		72.5581		85.6429		242.1531		131.8280
-159753		72.6330		85.2686		241.9882		130.9167
-165553		73.2244		86.3777		243.6675		132.7336
-158017		74.9420		88.4041		248.4639		135.4353
-165514		71.2567		84.2656		241.8187		129.8195
-161884		73.1254		86.1193		244.9498		131.4653
-159189		72.5676		85.5989		244.3134		132.3367
-160108		69.5561		82.1627		241.1720		129.9689
-161084		73.8883		87.2661		247.4707		135.6411
------------------------------------------------------------------------------------
-mean/sd         72.81/1.47      85.91/1.73      244.23/2.41             132.59/2.16
+shards 00000-00009:
+ Perplexity for 159658 n-grams: 243.2369
+ Perplexity for 165560 n-grams: 248.0840
+ Perplexity for 159982 n-grams: 244.2888
+ Perplexity for 161238 n-grams: 241.7122
+ Perplexity for 164687 n-grams: 242.8785
+ Perplexity for 162336 n-grams: 247.0062
+ Perplexity for 158574 n-grams: 249.6803
+ Perplexity for 164473 n-grams: 244.5668
+ Perplexity for 162800 n-grams: 246.4912
+ Perplexity for 163597 n-grams: 241.8771
