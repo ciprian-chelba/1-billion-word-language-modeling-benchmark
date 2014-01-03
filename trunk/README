@@ -36,7 +36,13 @@ $ tar --extract -v --file ../statmt.org/tar_archives/training-monolingual.tgz --
 followed by:
 $ ./scripts/get-data.sh
 
-For a more detailed description see README.corpus_generation.
+For a more detailed description of the steps involved, see README.corpus_generation. 
+
+The md5sums for the files generated from the statmt.org download are listed at: README.corpus_generation_checkpoints.
+
+You can use:
+$ md5sum -c README.corpus_generation_checkpoints
+to check that the files you produced match the checksums of those used to produce the results in the paper.
 
 Baseline Language Models:
 ==========================

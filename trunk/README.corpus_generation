@@ -89,4 +89,15 @@ Here is what I found out:
  histogram[20]=10599
  histogram[>20]=183636
 
-2. After removing the duplicates (we thus keep unique sentences) and thoroughly shuffling the data, the total number of words in the data drops from 2.9B to 0.8B (more precisely from 2933179059 to 825453185, counting </S> as we do in LM).
+2. After removing the duplicates (we thus keep unique sentences) and thoroughly shuffling the data, the total number of words in the data drops from 2.9B to 0.8B (829250940 including  sentence boundary markers).
+
+3. As a final step, Tony Robinson tried reproducing the corpus generation from scratch, and failed due to mismatches between his Perl version and ours, as well as irreproduceable use of the random number generator used for shuffling the data.
+
+The final solution shuffles and sorts the raw data published at statmt.org, partitions it in training/held-out data sets, and then pre-processes it.
+
+README.corpus_generation_checkpoints lists the md5sum checksums for all the generated files, and the versions of Perl, sort and tar used for producing it.
+
+As Unicode and Perl evolve, it is a good idea to publish your own version of the data in 
+{training,heldout}-monolingual.tokenized.shuffled/* if you match our checksums,
+such that future users of this project need not regenerate their own data, 
+and instead use your copy.
