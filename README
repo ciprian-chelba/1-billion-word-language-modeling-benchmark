@@ -29,6 +29,8 @@ for each of the following baseline models:
 
 The corpus is derived from the training-monolingual.tokenized/news.20??.en.shuffled.tokenized data distributed at http://statmt.org/wmt11/translation-task.html, Monolingual language model training data (Download it all in one file, 11 GB, at http://statmt.org/wmt11/training-monolingual.tgz). 
 
+A copy of the already pre-processed data, paper describing the benchmark, and other stuff is hosted at: http://www.statmt.org/lm-benchmark/
+
 Corpus preparation:
 ====================
 . download the "Monolingual language model training data" (http://statmt.org/wmt11/training-monolingual.tgz, 11 GB). 
