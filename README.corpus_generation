@@ -13,6 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --------------------------------------------------------------------------
 
+As Unicode and Perl evolve, it is a good idea to publish your own version of the data in 
+{training,heldout}-monolingual.tokenized.shuffled/* if you match our checksums,
+such that future users of this project need not regenerate their own data, 
+and instead use your copy.
+
+A copy of the already pre-processed data, paper describing the benchmark, and other stuff is hosted at: http://www.statmt.org/lm-benchmark/
+
 Data in training-monolingual.tokenized/ was generated using:
 $ for year in 2007 2008 2009 2010 2011; do 
     for language in en; do 
@@ -96,8 +103,3 @@ Here is what I found out:
 The final solution shuffles and sorts the raw data published at statmt.org, partitions it in training/held-out data sets, and then pre-processes it.
 
 README.corpus_generation_checkpoints lists the md5sum checksums for all the generated files, and the versions of Perl, sort and tar used for producing it.
-
-As Unicode and Perl evolve, it is a good idea to publish your own version of the data in 
-{training,heldout}-monolingual.tokenized.shuffled/* if you match our checksums,
-such that future users of this project need not regenerate their own data, 
-and instead use your copy.
